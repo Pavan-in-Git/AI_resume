@@ -6,7 +6,7 @@
   <br />
 
   <div>
-    <img alt="React" src="https://img.shields.io/badge/React-4c84f3?style=for-the-badge&logo=react&logoColor=white">
+    <img alt="React" src="https://img.shields.io/badge/React-19.1.0-4c84f3?style=for-the-badge&logo=react&logoColor=white">
     <img src="https://img.shields.io/badge/-Tailwind-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
     <img src="https://img.shields.io/badge/-TypeScript-black?style=for-the-badge&logoColor=white&logo=typescript&color=3178C6" alt="TypeScript" />
     <img alt="Puter.js" src="https://img.shields.io/badge/Puter.js-181758?style=for-the-badge&logoColor=white">
@@ -19,62 +19,53 @@
 
 ## 🌟 About ResuMate
 
-ResuMate is a cutting-edge AI-powered resume analysis platform that revolutionizes how job seekers optimize their resumes. Built with modern web technologies, it provides intelligent feedback, ATS optimization, and personalized recommendations to help you land your dream job.
+ResuMate is an AI-powered resume analysis platform that provides intelligent feedback and ATS optimization to help job seekers improve their resumes. Built with modern web technologies, it offers a seamless experience for uploading, analyzing, and optimizing resumes.
 
-### 🎯 What Makes ResuMate Special?
+## ✨ Features
 
-- **🤖 AI-Powered Analysis**: Advanced AI algorithms analyze your resume for content, structure, and ATS compatibility
-- **📊 Comprehensive Scoring**: Get detailed scores across multiple categories with actionable insights
-- **🎨 Beautiful UI**: Modern, responsive design with smooth animations and intuitive user experience
-- **📱 Cross-Platform**: Works seamlessly on desktop, tablet, and mobile devices
-- **🔒 Privacy-First**: Your data stays secure with client-side processing and Puter.js integration
-
-## ✨ Key Features
-
-### 🎯 **Smart Resume Analysis**
-- **Overall Score**: Get a comprehensive score out of 100
+### 🎯 **Resume Analysis**
+- **Overall Score**: Comprehensive scoring out of 100
 - **Category Breakdown**: Detailed analysis of Tone & Style, Content, Structure, and Skills
-- **ATS Optimization**: Ensure your resume passes Applicant Tracking Systems
-- **Personalized Tips**: AI-generated recommendations tailored to your specific resume
+- **ATS Score**: Applicant Tracking System compatibility scoring
+- **AI-Powered Tips**: Personalized recommendations with detailed explanations
 
-### 📈 **Advanced Dashboard**
-- **Visual Progress Tracking**: Beautiful progress indicators and score visualizations
-- **Resume Management**: Upload, store, and manage multiple resumes
+### 📊 **Dashboard**
+- **Resume Management**: Upload, store, and view multiple resumes
+- **Statistics Overview**: Track resume count, average scores, and high-performing resumes
 - **Quick Actions**: Easy access to upload new resumes and view features
-- **Statistics Overview**: Track your improvement over time
+- **Progress Tracking**: Visual indicators and score visualizations
 
-### 📄 **Professional Reports**
-- **PDF Export**: Download comprehensive analysis reports in PDF format
+### 📄 **Reports**
+- **PDF Export**: Download comprehensive analysis reports
 - **Detailed Feedback**: In-depth explanations for each recommendation
-- **Print-Ready**: Professional formatting perfect for sharing with career advisors
+- **Professional Formatting**: Clean, print-ready reports
 
-### 🚀 **Modern Technology Stack**
-- **React 18**: Latest React features with hooks and concurrent rendering
-- **TypeScript**: Type-safe development with excellent developer experience
-- **Tailwind CSS**: Utility-first CSS for rapid UI development
-- **Framer Motion**: Smooth animations and micro-interactions
-- **Puter.js**: Serverless backend with authentication, storage, and AI capabilities
+### 🎨 **User Experience**
+- **Modern UI**: Clean, responsive design with smooth animations
+- **Drag & Drop Upload**: Easy resume upload with visual feedback
+- **Progress Indicators**: Real-time progress tracking during analysis
+- **Mobile Responsive**: Works seamlessly across all devices
 
 ## 🛠️ Tech Stack
 
-| Technology | Purpose | Why We Chose It |
-|------------|---------|-----------------|
-| **React 18** | Frontend Framework | Modern, performant, and excellent ecosystem |
-| **TypeScript** | Type Safety | Prevents bugs and improves developer experience |
-| **Tailwind CSS** | Styling | Rapid development with consistent design system |
-| **Framer Motion** | Animations | Smooth, performant animations that enhance UX |
-| **Puter.js** | Backend Services | Serverless auth, storage, and AI without backend setup |
-| **Vite** | Build Tool | Lightning-fast development and optimized builds |
-| **React Router v7** | Routing | Modern routing with data loaders and error boundaries |
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| **React** | 19.1.0 | Frontend framework |
+| **TypeScript** | 5.8.3 | Type safety |
+| **Tailwind CSS** | 4.1.4 | Styling |
+| **Framer Motion** | 12.23.12 | Animations |
+| **React Router** | 7.5.3 | Routing |
+| **Puter.js** | - | Backend services (auth, storage, AI) |
+| **Zustand** | 5.0.6 | State management |
+| **React Dropzone** | 14.3.8 | File upload |
+| **PDF.js** | 5.3.93 | PDF processing |
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-Make sure you have the following installed:
 - [Node.js](https://nodejs.org/) (v18 or higher)
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
-- [Git](https://git-scm.com/)
 
 ### Installation
 
@@ -87,15 +78,11 @@ Make sure you have the following installed:
 2. **Install dependencies**
    ```bash
    npm install
-   # or
-   yarn install
    ```
 
 3. **Start the development server**
    ```bash
    npm run dev
-   # or
-   yarn dev
    ```
 
 4. **Open your browser**
@@ -103,95 +90,51 @@ Make sure you have the following installed:
 
 ## 📱 Usage
 
-### 1. **Upload Your Resume**
-- Click "Upload Resume" on the dashboard
-- Select your PDF resume file
-- Fill in job details (company name, job title, job description)
+1. **Sign In**: Authenticate using Puter.js
+2. **Upload Resume**: Upload your PDF resume and provide job details
+3. **Get Analysis**: Receive AI-powered feedback and scores
+4. **Download Report**: Export detailed analysis as PDF
+5. **Track Progress**: Monitor your resume improvements over time
 
-### 2. **Get AI Analysis**
-- Our AI analyzes your resume against the job requirements
-- Receive detailed feedback across multiple categories
-- Get specific tips for improvement
+## 🔧 Available Scripts
 
-### 3. **Review Results**
-- View your overall score and category breakdowns
-- Read detailed explanations for each recommendation
-- Download a comprehensive PDF report
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run start        # Start production server
+npm run typecheck    # Run TypeScript type checking
+```
 
-### 4. **Optimize & Repeat**
-- Apply the recommendations to improve your resume
-- Upload updated versions to track your progress
-- Compare different resume versions
-
-## 🎨 Design Philosophy
-
-ResuMate follows a **user-centric design approach** with these principles:
-
-- **🎯 Clarity**: Every feature is designed to be intuitive and self-explanatory
-- **⚡ Performance**: Optimized for speed and smooth user experience
-- **📱 Responsiveness**: Seamless experience across all device sizes
-- **♿ Accessibility**: Built with accessibility best practices in mind
-- **🎨 Modern Aesthetics**: Clean, professional design that inspires confidence
-
-## 🔧 Development
-
-### Project Structure
+## 📁 Project Structure
 
 ```
 ai-resume-analyzer/
 ├── app/
 │   ├── components/          # Reusable UI components
 │   ├── routes/             # Page components
-│   ├── lib/                # Utility functions and configurations
+│   ├── lib/                # Utilities and configurations
 │   └── app.css             # Global styles
 ├── public/                 # Static assets
-├── types/                  # TypeScript type definitions
+├── types/                  # TypeScript definitions
 └── constants/              # Application constants
-```
-
-### Available Scripts
-
-```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run preview      # Preview production build
-npm run lint         # Run ESLint
 ```
 
 ## 🤝 Contributing
 
-We welcome contributions! Here's how you can help:
-
-1. **Fork the repository**
-2. **Create a feature branch** (`git checkout -b feature/amazing-feature`)
-3. **Commit your changes** (`git commit -m 'Add some amazing feature'`)
-4. **Push to the branch** (`git push origin feature/amazing-feature`)
-5. **Open a Pull Request**
-
-### Development Guidelines
-
-- Follow the existing code style and conventions
-- Write meaningful commit messages
-- Add tests for new features
-- Update documentation as needed
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **Puter.js** for providing excellent serverless backend services
-- **React Team** for the amazing framework
-- **Tailwind CSS** for the utility-first CSS approach
-- **Framer Motion** for smooth animations
-- **Open Source Community** for inspiration and support
+This project is licensed under the MIT License.
 
 ## 📞 Contact
 
 **Pavan Sai**
 - GitHub: [@pavansai](https://github.com/pavansai)
-- LinkedIn: [Pavan Sai](https://linkedin.com/in/pavansai)
 - Email: pavansai@example.com
 
 ---
