@@ -8,9 +8,10 @@ interface UploadProps {
   onFileSelect?: (file: File | null) => void;
   isProcessing?: boolean;
   statusText?: string;
+  progress?: number;
 }
 
-const Upload = ({ onFileSelect, isProcessing = false, statusText = '' }: UploadProps) => {
+const Upload = ({ onFileSelect, isProcessing = false, statusText = '', progress = 0 }: UploadProps) => {
   const [file, setFile] = useState<File | null>(null);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
@@ -50,14 +51,31 @@ const Upload = ({ onFileSelect, isProcessing = false, statusText = '' }: UploadP
             className="text-center py-16"
           >
             <motion.div
-              className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-8"
+              className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-8 relative"
               animate={{ rotate: 360 }}
               transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
             >
               <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
               </svg>
+              {/* Progress percentage overlay */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-white font-bold text-lg">{progress}%</span>
+              </div>
             </motion.div>
+            
+            {/* Progress bar */}
+            <div className="w-full max-w-md mx-auto mb-6">
+              <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                <motion.div
+                  className="h-full bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"
+                  initial={{ width: 0 }}
+                  animate={{ width: `${progress}%` }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                />
+              </div>
+            </div>
+            
             <motion.h3
               className="text-2xl font-semibold text-gray-900 mb-4"
               variants={fadeIn}

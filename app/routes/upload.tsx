@@ -15,6 +15,7 @@ const UploadPage = () => {
     const navigate = useNavigate();
     const [isProcessing, setIsProcessing] = useState(false);
     const [statusText, setStatusText] = useState('');
+    const [progress, setProgress] = useState(0);
     const [file, setFile] = useState<File | null>(null);
 
     const handleFileSelect = (file: File | null) => {
@@ -23,20 +24,25 @@ const UploadPage = () => {
 
     const handleAnalyze = async ({ companyName, jobTitle, jobDescription, file }: { companyName: string, jobTitle: string, jobDescription: string, file: File  }) => {
         setIsProcessing(true);
+        setProgress(0);
 
         setStatusText('Uploading the file...');
+        setProgress(10);
         const uploadedFile = await fs.upload([file]);
         if(!uploadedFile) return setStatusText('Error: Failed to upload file');
 
         setStatusText('Converting to image...');
+        setProgress(25);
         const imageFile = await convertPdfToImage(file);
         if(!imageFile.file) return setStatusText('Error: Failed to convert PDF to image');
 
         setStatusText('Uploading the image...');
+        setProgress(40);
         const uploadedImage = await fs.upload([imageFile.file]);
         if(!uploadedImage) return setStatusText('Error: Failed to upload image');
 
         setStatusText('Preparing data...');
+        setProgress(55);
         const uuid = generateUUID();
         const data = {
             id: uuid,
@@ -47,23 +53,34 @@ const UploadPage = () => {
         }
         await kv.set(`resume:${uuid}`, JSON.stringify(data));
 
-        setStatusText('Analyzing...');
-
+        setStatusText('Analyzing resume...');
+        setProgress(70);
         const feedback = await ai.feedback(
             uploadedFile.path,
             prepareInstructions({ jobTitle, jobDescription })
         )
         if (!feedback) return setStatusText('Error: Failed to analyze resume');
 
+        setStatusText('Processing feedback...');
+        setProgress(85);
         const feedbackText = typeof feedback.message.content === 'string'
             ? feedback.message.content
             : feedback.message.content[0].text;
 
         data.feedback = JSON.parse(feedbackText);
         await kv.set(`resume:${uuid}`, JSON.stringify(data));
-        setStatusText('Analysis complete, redirecting...');
-        console.log(data);
-        navigate(`/resume/${uuid}`);
+        
+        setStatusText('Finalizing analysis...');
+        setProgress(95);
+        
+        // Small delay to show 100% before redirect
+        setTimeout(() => {
+            setProgress(100);
+            setStatusText('Analysis complete, redirecting...');
+            setTimeout(() => {
+                navigate(`/resume/${uuid}`);
+            }, 500);
+        }, 200);
     }
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -169,6 +186,7 @@ const UploadPage = () => {
                                                 onFileSelect={handleFileSelect}
                                                 isProcessing={isProcessing}
                                                 statusText={statusText}
+                                                progress={progress}
                                             />
                                         </div>
                                     </div>
