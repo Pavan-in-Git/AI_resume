@@ -154,23 +154,30 @@ const Results = ({ feedback, imageUrl, resumeUrl }: ResultsProps) => {
           </motion.div>
         </motion.div>
 
-        {/* Action Buttons */}
+        {/* Enhanced Action Buttons */}
         <motion.div
           variants={fadeInUp}
           className="flex flex-col sm:flex-row gap-4 pt-8"
         >
           <motion.button
-            className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-8 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+            className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-8 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
             Download Report
           </motion.button>
           <motion.button
-            className="flex-1 bg-white/80 backdrop-blur-sm text-gray-700 py-4 px-8 rounded-full font-semibold border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300"
+            className="flex-1 bg-white/80 backdrop-blur-sm text-gray-700 py-4 px-8 rounded-full font-semibold border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
+            onClick={() => window.location.href = '/upload'}
           >
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+            </svg>
             Upload Another Resume
           </motion.button>
         </motion.div>

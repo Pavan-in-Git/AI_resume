@@ -109,55 +109,58 @@ const UploadPage = () => {
                             variants={fadeInUp}
                             className="lg:col-span-2"
                         >
-                            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/20">
-                                <form id="upload-form" onSubmit={handleSubmit} className="space-y-8">
-                                    {/* Company and Job Title Row */}
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        <div className="space-y-3">
-                                            <label htmlFor="company-name" className="block text-sm font-semibold text-gray-700">
-                                                Company Name
-                                            </label>
-                                            <input
-                                                type="text"
-                                                name="company-name"
-                                                placeholder="e.g., Google, Microsoft, Apple"
-                                                id="company-name"
-                                                className="w-full h-12 px-4 py-3 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 placeholder-gray-400 text-base"
-                                                required
-                                            />
-                                        </div>
-                                        <div className="space-y-3">
-                                            <label htmlFor="job-title" className="block text-sm font-semibold text-gray-700">
-                                                Job Title
-                                            </label>
-                                            <input
-                                                type="text"
-                                                name="job-title"
-                                                placeholder="e.g., Software Engineer, Product Manager"
-                                                id="job-title"
-                                                className="w-full h-12 px-4 py-3 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 placeholder-gray-400 text-base"
-                                                required
-                                            />
-                                        </div>
+                            <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-4 shadow-xl border border-white/30">
+                                <form id="upload-form" onSubmit={handleSubmit} className="space-y-3">
+                                    {/* Form Header */}
+                                    <div className="text-center mb-3">
+                                        <h2 className="text-lg font-bold text-gray-900 mb-1">Resume Analysis Form</h2>
+                                        <p className="text-xs text-gray-600">Fill in the details below to get personalized feedback</p>
                                     </div>
-
-                                    {/* Job Description */}
-                                    <div className="space-y-3">
-                                        <label htmlFor="job-description" className="block text-sm font-semibold text-gray-700">
-                                            Job Description
-                                        </label>
-                                        <textarea
-                                            rows={6}
-                                            name="job-description"
-                                            placeholder="Paste the job description here for targeted analysis..."
-                                            id="job-description"
-                                            className="w-full px-4 py-3 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none placeholder-gray-400 text-base min-h-[150px]"
-                                            required
-                                        />
-                                    </div>
+                                                                         {/* All Input Fields in Single Column */}
+                                     <div className="space-y-3">
+                                         <div className="space-y-1">
+                                             <label htmlFor="company-name" className="block text-sm font-semibold text-gray-700">
+                                                 Company Name
+                                             </label>
+                                             <input
+                                                 type="text"
+                                                 name="company-name"
+                                                 placeholder="e.g., Google, Microsoft, Apple"
+                                                 id="company-name"
+                                                 className="w-full h-16 px-5 py-4 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 placeholder-gray-400 text-base shadow-sm"
+                                                 required
+                                             />
+                                         </div>
+                                         <div className="space-y-1">
+                                             <label htmlFor="job-title" className="block text-sm font-semibold text-gray-700">
+                                                 Job Title
+                                             </label>
+                                             <input
+                                                 type="text"
+                                                 name="job-title"
+                                                 placeholder="e.g., Software Engineer, Product Manager"
+                                                 id="job-title"
+                                                 className="w-full h-16 px-5 py-4 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 placeholder-gray-400 text-base shadow-sm"
+                                                 required
+                                             />
+                                         </div>
+                                         <div className="space-y-1">
+                                             <label htmlFor="job-description" className="block text-sm font-semibold text-gray-700">
+                                                 Job Description
+                                             </label>
+                                             <textarea
+                                                 rows={7}
+                                                 name="job-description"
+                                                 placeholder="Paste the job description here for targeted analysis..."
+                                                 id="job-description"
+                                                 className="w-full px-5 py-4 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none placeholder-gray-400 text-base min-h-[160px] leading-relaxed shadow-sm"
+                                                 required
+                                             />
+                                         </div>
+                                     </div>
 
                                     {/* Upload Section */}
-                                    <div className="space-y-3">
+                                    <div className="space-y-1">
                                         <label className="block text-sm font-semibold text-gray-700">
                                             Upload Resume
                                         </label>
@@ -172,31 +175,38 @@ const UploadPage = () => {
 
                                     {/* Submit Button */}
                                     {file && (
-                                        <motion.button
-                                            type="submit"
-                                            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-8 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                                            whileHover={{ scale: 1.02 }}
-                                            whileTap={{ scale: 0.98 }}
-                                            disabled={isProcessing}
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ duration: 0.5 }}
+                                            className="pt-4"
                                         >
-                                            {isProcessing ? (
-                                                <div className="flex items-center justify-center">
-                                                    <motion.div
-                                                        className="w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-3"
-                                                        animate={{ rotate: 360 }}
-                                                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                                                    />
-                                                    Analyzing Resume...
-                                                </div>
-                                            ) : (
-                                                <div className="flex items-center justify-center">
-                                                    <span>Analyze Resume</span>
-                                                    <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                                    </svg>
-                                                </div>
-                                            )}
-                                        </motion.button>
+                                            <motion.button
+                                                type="submit"
+                                                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-8 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                                                whileHover={{ scale: 1.02 }}
+                                                whileTap={{ scale: 0.98 }}
+                                                disabled={isProcessing}
+                                            >
+                                                {isProcessing ? (
+                                                    <div className="flex items-center justify-center">
+                                                        <motion.div
+                                                            className="w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-3"
+                                                            animate={{ rotate: 360 }}
+                                                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                                                        />
+                                                        Analyzing Resume...
+                                                    </div>
+                                                ) : (
+                                                    <div className="flex items-center justify-center">
+                                                        <span>Analyze Resume</span>
+                                                        <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                                        </svg>
+                                                    </div>
+                                                )}
+                                            </motion.button>
+                                        </motion.div>
                                     )}
                                 </form>
                             </div>
