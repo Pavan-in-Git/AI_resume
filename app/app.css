@@ -80,17 +80,11 @@ form {
   .page-heading {
     @apply flex flex-col items-center gap-8 max-w-4xl text-center;
   }
-  .resumes-section {
-    @apply flex flex-wrap max-lg:flex-col gap-6 items-start  w-full max-w-[1850px] justify-evenly;
-  }
 
   .resume-card {
-    @apply flex flex-col gap-8 h-[560px] w-full lg:w-[450px] xl:w-[490px] bg-white rounded-2xl p-4;
+    @apply flex flex-col gap-6 bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-xl border border-white/20 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2;
   }
 
-  .resume-card-header {
-    @apply flex flex-row gap-2 justify-between min-h-[110px] max-sm:flex-col items-center max-md:justify-center max-md:items-center;
-  }
 
   .feedback-section {
     @apply flex flex-col gap-8 w-1/2 px-8 max-lg:w-full py-6;
@@ -148,5 +142,35 @@ form {
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
   }
 }

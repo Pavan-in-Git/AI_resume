@@ -12,7 +12,7 @@
     <img alt="Static Badge" src="https://img.shields.io/badge/Puter.js-181758?style=for-the-badge&logoColor=white">
   </div>
 
-  <h3 align="center">AI Resume Analyzer</h3>
+  <h3 align="center">ResuMate - AI-Powered Resume Analysis</h3>
 
    <div align="center">
      Build this project step by step with our detailed tutorial on <a href="https://www.youtube.com/watch?v=XUkNR-JfHwo" target="_blank"><b>JavaScript Mastery</b></a> YouTube. Join the JSM family!
@@ -38,7 +38,7 @@ If you prefer visual learning, this is the perfect resource for you. Follow our 
 
 ## <a name="introduction">✨ Introduction</a>
 
-Build an AI-powered Resume Analyzer with React, React Router, and Puter.js! Implement seamless auth, upload and store resumes, and match candidates to jobs using smart AI evaluations. Get custom feedback and ATS scores tailored to each listing—all wrapped in a clean, reusable UI.
+ResuMate is an AI-powered resume analysis platform built with React, React Router, and Puter.js! Experience seamless authentication, upload and store resumes, and get smart AI evaluations with custom feedback and ATS scores tailored to each job listing—all wrapped in a sleek, modern UI with smooth animations powered by Framer Motion.
 
 If you're getting started and need assistance or face any bugs, join our active Discord community with over **50k+** members. It's a place where people help each other out.
 

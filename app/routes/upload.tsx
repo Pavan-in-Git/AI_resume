@@ -1,13 +1,16 @@
 import {type FormEvent, useState} from 'react'
+import { motion } from "framer-motion";
 import Navbar from "~/components/Navbar";
-import FileUploader from "~/components/FileUploader";
+import Footer from "~/components/Footer";
+import Upload from "~/components/Upload";
 import {usePuterStore} from "~/lib/puter";
 import {useNavigate} from "react-router";
 import {convertPdfToImage} from "~/lib/pdf2img";
 import {generateUUID} from "~/lib/utils";
 import {prepareInstructions} from "../../constants";
+import { fadeInUp, staggerContainer } from "~/components/Animations";
 
-const Upload = () => {
+const UploadPage = () => {
     const { auth, isLoading, fs, ai, kv } = usePuterStore();
     const navigate = useNavigate();
     const [isProcessing, setIsProcessing] = useState(false);
@@ -79,48 +82,195 @@ const Upload = () => {
     }
 
     return (
-        <main className="bg-[url('/images/bg-main.svg')] bg-cover">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
             <Navbar />
 
-            <section className="main-section">
-                <div className="page-heading py-16">
-                    <h1>Smart feedback for your dream job</h1>
-                    {isProcessing ? (
-                        <>
-                            <h2>{statusText}</h2>
-                            <img src="/images/resume-scan.gif" className="w-full" />
-                        </>
-                    ) : (
-                        <h2>Drop your resume for an ATS score and improvement tips</h2>
-                    )}
-                    {!isProcessing && (
-                        <form id="upload-form" onSubmit={handleSubmit} className="flex flex-col gap-4 mt-8">
-                            <div className="form-div">
-                                <label htmlFor="company-name">Company Name</label>
-                                <input type="text" name="company-name" placeholder="Company Name" id="company-name" />
+            <motion.main
+                className="pt-20 min-h-screen"
+                initial="initial"
+                animate="animate"
+                variants={staggerContainer}
+            >
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                    {/* Header Section */}
+                    <motion.div variants={fadeInUp} className="text-center mb-12">
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent mb-6 leading-tight">
+                            Upload Your Resume
+                        </h1>
+                        <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                            Get instant AI-powered feedback and optimization suggestions for your resume
+                        </p>
+                    </motion.div>
+
+                    {/* Form Section */}
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                        {/* Left Column - Form */}
+                        <motion.div 
+                            variants={fadeInUp}
+                            className="lg:col-span-2"
+                        >
+                            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/20">
+                                <form id="upload-form" onSubmit={handleSubmit} className="space-y-8">
+                                    {/* Company and Job Title Row */}
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div className="space-y-3">
+                                            <label htmlFor="company-name" className="block text-sm font-semibold text-gray-700">
+                                                Company Name
+                                            </label>
+                                            <input
+                                                type="text"
+                                                name="company-name"
+                                                placeholder="e.g., Google, Microsoft, Apple"
+                                                id="company-name"
+                                                className="w-full h-12 px-4 py-3 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 placeholder-gray-400 text-base"
+                                                required
+                                            />
+                                        </div>
+                                        <div className="space-y-3">
+                                            <label htmlFor="job-title" className="block text-sm font-semibold text-gray-700">
+                                                Job Title
+                                            </label>
+                                            <input
+                                                type="text"
+                                                name="job-title"
+                                                placeholder="e.g., Software Engineer, Product Manager"
+                                                id="job-title"
+                                                className="w-full h-12 px-4 py-3 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 placeholder-gray-400 text-base"
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {/* Job Description */}
+                                    <div className="space-y-3">
+                                        <label htmlFor="job-description" className="block text-sm font-semibold text-gray-700">
+                                            Job Description
+                                        </label>
+                                        <textarea
+                                            rows={6}
+                                            name="job-description"
+                                            placeholder="Paste the job description here for targeted analysis..."
+                                            id="job-description"
+                                            className="w-full px-4 py-3 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none placeholder-gray-400 text-base min-h-[150px]"
+                                            required
+                                        />
+                                    </div>
+
+                                    {/* Upload Section */}
+                                    <div className="space-y-3">
+                                        <label className="block text-sm font-semibold text-gray-700">
+                                            Upload Resume
+                                        </label>
+                                        <div className="w-full">
+                                            <Upload
+                                                onFileSelect={handleFileSelect}
+                                                isProcessing={isProcessing}
+                                                statusText={statusText}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {/* Submit Button */}
+                                    {file && (
+                                        <motion.button
+                                            type="submit"
+                                            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-8 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                                            whileHover={{ scale: 1.02 }}
+                                            whileTap={{ scale: 0.98 }}
+                                            disabled={isProcessing}
+                                        >
+                                            {isProcessing ? (
+                                                <div className="flex items-center justify-center">
+                                                    <motion.div
+                                                        className="w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-3"
+                                                        animate={{ rotate: 360 }}
+                                                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                                                    />
+                                                    Analyzing Resume...
+                                                </div>
+                                            ) : (
+                                                <div className="flex items-center justify-center">
+                                                    <span>Analyze Resume</span>
+                                                    <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                                    </svg>
+                                                </div>
+                                            )}
+                                        </motion.button>
+                                    )}
+                                </form>
                             </div>
-                            <div className="form-div">
-                                <label htmlFor="job-title">Job Title</label>
-                                <input type="text" name="job-title" placeholder="Job Title" id="job-title" />
-                            </div>
-                            <div className="form-div">
-                                <label htmlFor="job-description">Job Description</label>
-                                <textarea rows={5} name="job-description" placeholder="Job Description" id="job-description" />
+                        </motion.div>
+
+                        {/* Right Column - Info Panel */}
+                        <motion.div 
+                            variants={fadeInUp}
+                            className="lg:col-span-1 space-y-6"
+                        >
+                            {/* Tips Card */}
+                            <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-6 border border-blue-100">
+                                <div className="flex items-center mb-4">
+                                    <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mr-3">
+                                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                    </div>
+                                    <h3 className="text-lg font-semibold text-gray-900">Pro Tips</h3>
+                                </div>
+                                <ul className="space-y-3 text-sm text-gray-600">
+                                    <li className="flex items-start">
+                                        <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                                        <span>Upload a PDF resume for best results</span>
+                                    </li>
+                                    <li className="flex items-start">
+                                        <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                                        <span>Include the complete job description for targeted analysis</span>
+                                    </li>
+                                    <li className="flex items-start">
+                                        <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                                        <span>Our AI will provide ATS optimization suggestions</span>
+                                    </li>
+                                </ul>
                             </div>
 
-                            <div className="form-div">
-                                <label htmlFor="uploader">Upload Resume</label>
-                                <FileUploader onFileSelect={handleFileSelect} />
+                            {/* Features Card */}
+                            <div className="bg-white/60 backdrop-blur-sm rounded-3xl p-6 border border-white/20">
+                                <h3 className="text-lg font-semibold text-gray-900 mb-4">What You'll Get</h3>
+                                <div className="space-y-4">
+                                    <div className="flex items-center">
+                                        <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                                            <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                        </div>
+                                        <span className="text-sm text-gray-600">ATS Score & Optimization</span>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                                            <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                        </div>
+                                        <span className="text-sm text-gray-600">Detailed Feedback Report</span>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                                            <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                        </div>
+                                        <span className="text-sm text-gray-600">Improvement Suggestions</span>
+                                    </div>
+                                </div>
                             </div>
-
-                            <button className="primary-button" type="submit">
-                                Analyze Resume
-                            </button>
-                        </form>
-                    )}
+                        </motion.div>
+                    </div>
                 </div>
-            </section>
-        </main>
+            </motion.main>
+
+            <Footer />
+        </div>
     )
 }
-export default Upload
+
+export default UploadPage

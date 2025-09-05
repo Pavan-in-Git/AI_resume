@@ -6,11 +6,11 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
+import { useEffect } from "react";
 
 import type { Route } from "./+types/root";
 import "./app.css";
 import {usePuterStore} from "~/lib/puter";
-import {useEffect} from "react";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -29,7 +29,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const { init } = usePuterStore();
 
   useEffect(() => {
-    init()
+    // Only initialize on client side
+    if (typeof window !== 'undefined') {
+      init()
+    }
   }, [init]);
 
   return (
@@ -37,10 +40,27 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#3b82f6" />
+        <meta name="description" content="ResuMate - AI-powered resume analysis that helps you land your dream job. Get instant feedback and optimization suggestions." />
+        <meta name="keywords" content="resume, AI, analysis, ATS, job application, career, optimization" />
+        <meta name="author" content="ResuMate" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="ResuMate - AI-Powered Resume Analysis" />
+        <meta property="og:description" content="AI-powered resume analysis that helps you land your dream job. Get instant feedback and optimization suggestions." />
+        <meta property="og:site_name" content="ResuMate" />
+        
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:title" content="ResuMate - AI-Powered Resume Analysis" />
+        <meta property="twitter:description" content="AI-powered resume analysis that helps you land your dream job. Get instant feedback and optimization suggestions." />
+        
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="antialiased">
         <script src="https://js.puter.com/v2/"></script>
         {children}
         <ScrollRestoration />
