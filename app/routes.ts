@@ -7,5 +7,9 @@ export default [
     route('/resume/:id', 'routes/resume.tsx'),
     route('/features', 'routes/features.tsx'),
     route('/about', 'routes/about.tsx'),
+    route('/help', 'routes/help.tsx'),
+    route('/contact', 'routes/contact.tsx'),
+    route('/privacy', 'routes/privacy.tsx'),
+    route('/terms', 'routes/terms.tsx'),
     route('/wipe', 'routes/wipe.tsx'),
 ] satisfies RouteConfig;
