@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router";
 import { fadeInUp, hoverScale } from "./Animations";
+import { useState } from "react";
 
 const Navbar = () => {
     const location = useLocation();
-    
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
         <motion.nav
             className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200/50"
@@ -79,6 +81,7 @@ const Navbar = () => {
                     <motion.div
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
+                        className="hidden md:block"
                     >
                         <Link
                             to="/upload"
@@ -96,12 +99,74 @@ const Navbar = () => {
                         className="md:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
+                        aria-label="Toggle menu"
+                        aria-expanded={isOpen}
+                        onClick={() => setIsOpen((prev) => !prev)}
                     >
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                            {isOpen ? (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            ) : (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                            )}
                         </svg>
                     </motion.button>
                 </div>
+                {/* Mobile dropdown */}
+                {isOpen && (
+                    <div className="md:hidden pb-4">
+                        <div className="space-y-2 rounded-2xl border border-gray-200 bg-white/90 backdrop-blur p-4 shadow-lg">
+                            <Link
+                                to="/"
+                                onClick={() => setIsOpen(false)}
+                                className={`block rounded-lg px-3 py-2 text-sm font-medium ${
+                                    location.pathname === "/" ? "text-blue-600 bg-blue-50" : "text-gray-700 hover:bg-gray-100"
+                                }`}
+                            >
+                                Dashboard
+                            </Link>
+                            <Link
+                                to="/upload"
+                                onClick={() => setIsOpen(false)}
+                                className={`block rounded-lg px-3 py-2 text-sm font-medium ${
+                                    location.pathname === "/upload" ? "text-blue-600 bg-blue-50" : "text-gray-700 hover:bg-gray-100"
+                                }`}
+                            >
+                                Upload Resume
+                            </Link>
+                            <Link
+                                to="/features"
+                                onClick={() => setIsOpen(false)}
+                                className={`block rounded-lg px-3 py-2 text-sm font-medium ${
+                                    location.pathname === "/features" ? "text-blue-600 bg-blue-50" : "text-gray-700 hover:bg-gray-100"
+                                }`}
+                            >
+                                Features
+                            </Link>
+                            <Link
+                                to="/about"
+                                onClick={() => setIsOpen(false)}
+                                className={`block rounded-lg px-3 py-2 text-sm font-medium ${
+                                    location.pathname === "/about" ? "text-blue-600 bg-blue-50" : "text-gray-700 hover:bg-gray-100"
+                                }`}
+                            >
+                                About
+                            </Link>
+                            <div className="pt-2">
+                                <Link
+                                    to="/upload"
+                                    onClick={() => setIsOpen(false)}
+                                    className="inline-flex w-full items-center justify-center px-6 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                                >
+                                    Get Started
+                                    <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                    </svg>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         </motion.nav>
     );

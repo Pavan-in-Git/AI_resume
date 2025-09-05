@@ -51,17 +51,13 @@ const Upload = ({ onFileSelect, isProcessing = false, statusText = '', progress 
             className="text-center py-16"
           >
             <motion.div
-              className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-8 relative"
+              className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-8"
               animate={{ rotate: 360 }}
               transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
             >
               <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
               </svg>
-              {/* Progress percentage overlay */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-white font-bold text-lg">{progress}%</span>
-              </div>
             </motion.div>
             
             {/* Progress bar */}
@@ -75,6 +71,8 @@ const Upload = ({ onFileSelect, isProcessing = false, statusText = '', progress 
                 />
               </div>
             </div>
+            {/* Progress percentage below the bar */}
+            <div className="text-sm font-medium text-gray-700 mb-4">{progress}%</div>
             
             <motion.h3
               className="text-2xl font-semibold text-gray-900 mb-4"
@@ -97,7 +95,7 @@ const Upload = ({ onFileSelect, isProcessing = false, statusText = '', progress 
             exit={{ opacity: 0, y: -20 }}
             className="space-y-6"
           >
-            <motion.div
+            <div
               {...getRootProps()}
               className={`
                 relative p-8 text-center transition-all duration-300 cursor-pointer
@@ -107,8 +105,6 @@ const Upload = ({ onFileSelect, isProcessing = false, statusText = '', progress 
                   : 'border-gray-200 hover:border-blue-400 hover:bg-blue-50/50'
                 }
               `}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
             >
               <input {...getInputProps()} />
               
@@ -201,27 +197,9 @@ const Upload = ({ onFileSelect, isProcessing = false, statusText = '', progress 
                   </motion.div>
                 )}
               </AnimatePresence>
-            </motion.div>
+            </div>
 
-            {file && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-center"
-              >
-                <motion.button
-                  type="submit"
-                  className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <span>Analyze Resume</span>
-                  <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </motion.button>
-              </motion.div>
-            )}
+            {/* Removed duplicate Analyze button here. Single submit button lives in the page form. */}
           </motion.div>
         )}
       </AnimatePresence>

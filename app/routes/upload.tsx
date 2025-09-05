@@ -120,13 +120,13 @@ const UploadPage = () => {
                     </motion.div>
 
                     {/* Form Section */}
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start justify-items-center">
                         {/* Left Column - Form */}
                         <motion.div 
                             variants={fadeInUp}
-                            className="lg:col-span-2"
+                            className="lg:col-span-2 w-full max-w-2xl mx-auto"
                         >
-                            <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-4 shadow-xl border border-white/30">
+                            <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-4 shadow-xl border border-white/30 w-full">
                                 <form id="upload-form" onSubmit={handleSubmit} className="space-y-3">
                                     {/* Form Header */}
                                     <div className="text-center mb-3">
@@ -233,7 +233,7 @@ const UploadPage = () => {
                         {/* Right Column - Info Panel */}
                         <motion.div 
                             variants={fadeInUp}
-                            className="lg:col-span-1 space-y-6"
+                            className="lg:col-span-1 space-y-6 w-full max-w-md mx-auto"
                         >
                             {/* Tips Card */}
                             <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-6 border border-blue-100">
